@@ -1,7 +1,93 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+             https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
 
-<web-app>
-  <display-name>Archetype Created Web Application</display-name>
+    <display-name>discography-app</display-name>
+
+    <!-- Tells Spring's ContextLoaderListener where to find the bean config.
+         This path is what will actually change across your XML/annotation/JavaConfig
+         branches — everything else in this file stays identical. -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:applicationContext.xml</param-value>
+    </context-param>
+
+    <!-- MUST be declared first: builds the Spring WebApplicationContext
+         and stores it in the ServletContext attributes. -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <!-- MUST be declared second: relies on the context already existing. -->
+    <listener>
+        <listener-class>com.example.DataInitializerListener</listener-class>
+    </listener>
+
+    <!-- Servlet declarations go here in Step 4 -->
+    <servlet>
+        <servlet-name>ArtistListServlet</servlet-name>
+        <servlet-class>com.example.ArtistListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ArtistListServlet</servlet-name>
+        <url-pattern>/artists</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ArtistCreateServlet</servlet-name>
+        <servlet-class>com.example.ArtistCreateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ArtistCreateServlet</servlet-name>
+        <url-pattern>/artists/create</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ArtistSearchServlet</servlet-name>
+        <servlet-class>com.example.ArtistSearchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ArtistSearchServlet</servlet-name>
+        <url-pattern>/artists/search</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ArtistDeleteServlet</servlet-name>
+        <servlet-class>com.example.ArtistDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ArtistDeleteServlet</servlet-name>
+        <url-pattern>/artists/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TrackListServlet</servlet-name>
+        <servlet-class>com.example.TrackListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TrackListServlet</servlet-name>
+        <url-pattern>/tracks</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TrackCreateServlet</servlet-name>
+        <servlet-class>com.example.TrackCreateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TrackCreateServlet</servlet-name>
+        <url-pattern>/tracks/create</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TrackDeleteServlet</servlet-name>
+        <servlet-class>com.example.TrackDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TrackDeleteServlet</servlet-name>
+        <url-pattern>/tracks/delete</url-pattern>
+    </servlet-mapping>
+    
 </web-app>
