@@ -4,4 +4,17 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <bean id="artistRepository" class="repository.ArtistRepository"/>
+    <bean id="trackRepository" class="repository.TrackRepository"/>
+
+    <bean id="artistService" class="service.ArtistService" init-method="initData">
+        <property name="artistRepository" ref="artistRepository"/>
+        <property name="trackRepository" ref="trackRepository"/>
+    </bean>
+
+    <bean id="trackService" class="service.TrackService">
+        <property name="trackRepository" ref="trackRepository"/>
+        <property name="artistRepository" ref="artistRepository"/>
+    </bean>
+
 </beans>
